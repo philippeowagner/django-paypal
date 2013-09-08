@@ -1,12 +1,14 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 from django.http import HttpResponse
-from django.views.decorators.http import require_POST
+#from django.views.decorators.http import require_POST
+from django.views.decorators.csrf import csrf_exempt
 from paypal.standard.ipn.forms import PayPalIPNForm
 from paypal.standard.ipn.models import PayPalIPN
 
 
-@require_POST
+#@require_POST
+@csrf_exempt
 def ipn(request, item_check_callable=None):
     """
     PayPal IPN endpoint (notify_url).
